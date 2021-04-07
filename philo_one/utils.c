@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <aduregon@42.fr>                  +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 10:52:42 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/06 11:08:35 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/07 11:32:33 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,36 @@ void	*ft_calloc(size_t count, size_t size)
 	size_t	index;
 	void	*mem;
 
-	if (!(mem = malloc(count * size)))
+	mem = malloc(count * size);
+	if (!mem)
 		return (NULL);
 	index = 0;
 	ft_bzero(mem, count * size);
 	return (mem);
 }
 
-void	*ft_malloc(size_t size, size_t mol)
+int	ft_atoi(const char *str)
 {
-	void	*res;
-	int		i;
+	size_t				index;
+	int					neg;
+	unsigned long int	res;
 
-	res = ft_calloc((mol + 1), size);
-	if (res == NULL)
-		exit(1);
-	return (res);
+	index = 0;
+	neg = 1;
+	res = 0;
+	while (ft_isspace(str[index]))
+		index++;
+	if (str[index] == '+' || str[index] == '-')
+	{
+		if (str[index] == '-')
+			neg = -1;
+		index++;
+	}
+	while (ft_isdigit(str[index]))
+	{
+		res *= 10;
+		res += str[index] - 48;
+		index++;
+	}
+	return (res * neg);
 }

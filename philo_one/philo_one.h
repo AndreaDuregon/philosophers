@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/07 11:34:27 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/11 15:46:16 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,35 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
+
+typedef struct	s_table
+{
+	int				num_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_meal;
+	int				round;
+	struct timeval 	now;
+	pthread_mutex_t	status;
+}				t_table;
 
 typedef struct s_philo
 {
-	pthread_mutex_t	fork;
-	int				occupied;
-	int				philo_num;
-	int				die;
-	int				eat;
-	int				sleep;
-	int				meal;
-}				t_philo;
+	int				id;
+	int				eat_time;
+	int				sleep_time;
+	int				remain_meal;
+	t_table			*table;
+}					t_philo;
 
-void			*ft_calloc(size_t count, size_t size);
-int				ft_atoi(const char *str);
+
+void	*ft_memset(void *s, int c, size_t n);
+void    *ft_calloc(size_t nelem, size_t elsize);
+int		ft_isspace(int c);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *nptr);
+void	input_error(void);
 
 #endif

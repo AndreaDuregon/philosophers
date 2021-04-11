@@ -6,47 +6,73 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 10:52:42 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/07 11:32:33 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/11 10:19:20 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t	index;
-	void	*mem;
+	unsigned char	*p;
 
-	mem = malloc(count * size);
-	if (!mem)
-		return (NULL);
-	index = 0;
-	ft_bzero(mem, count * size);
-	return (mem);
+	p = (unsigned char *)s;
+	while (n--)
+		*p++ = (unsigned char)c;
+	return (s);
 }
 
-int	ft_atoi(const char *str)
+void    *ft_calloc(size_t nelem, size_t elsize)
 {
-	size_t				index;
-	int					neg;
-	unsigned long int	res;
+	char	*p;
 
-	index = 0;
-	neg = 1;
-	res = 0;
-	while (ft_isspace(str[index]))
-		index++;
-	if (str[index] == '+' || str[index] == '-')
+    p = (char *)malloc(nelem * elsize);
+	if (!p)
+		return (NULL);
+	p = ft_memset(p, 0, nelem * elsize);
+	return ((void *)p);
+}
+
+int	ft_isspace(int c)
+{
+	if (c == ' ' || c == '\f' || c == '\n' ||
+	c == '\r' || c == '\t' || c == '\v')
+		return (1);
+	return (0);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	long int		sum;
+	int				negative;
+	int				count;
+
+	sum = 0;
+	negative = 1;
+	count = 0;
+	while (ft_isspace(*nptr))
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
+		if (*nptr++ == '-')
+			negative = -1;
+	while (ft_isdigit(*nptr))
 	{
-		if (str[index] == '-')
-			neg = -1;
-		index++;
+		sum *= 10;
+		sum += *nptr++ - '0';
+		if (negative == -1 && sum < 0)
+			return (0);
+		if (negative == 1 && sum < 0)
+			return (-1);
+		count++;
 	}
-	while (ft_isdigit(str[index]))
-	{
-		res *= 10;
-		res += str[index] - 48;
-		index++;
-	}
-	return (res * neg);
+	if (count == 0)
+		return (-1);
+	return (sum * negative);
 }

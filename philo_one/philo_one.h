@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/11 15:46:16 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/12 12:06:17 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 typedef struct	s_table
 {
+	int				cont;
+	int				turn;
 	int				num_philo;
 	int				time_to_die;
 	int				time_to_eat;
@@ -28,12 +30,16 @@ typedef struct	s_table
 	int				num_meal;
 	int				round;
 	struct timeval 	now;
+	int				*fork;
 	pthread_mutex_t	status;
+	pthread_mutex_t	print;
+	pthread_mutex_t	dead;
 }				t_table;
 
 typedef struct s_philo
 {
 	int				id;
+	int				status;
 	int				eat_time;
 	int				sleep_time;
 	int				remain_meal;

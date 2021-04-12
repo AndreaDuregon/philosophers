@@ -2,7 +2,8 @@ NAME	=	philo_one
 
 SRCS	=	philo_one.c \
 			utils.c \
-			exit.c
+			exit.c \
+			time.c
 
 OBJS	=	$(SRCS:.c=.o)
 

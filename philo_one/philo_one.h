@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/13 10:21:59 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/13 17:32:04 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,22 @@ uint64_t		get_time_stamp(void);
 static	size_t	ft_nsize(int n);
 char			*ft_itoa(int n);
 size_t			ft_strlen(const char *s);
+int				parse_input(char **argv, int argc);
+t_table			init_table2(t_table table, char **argv, int argc);
+t_table			init_table(char **argv, int argc);
+t_philo			*init_philo(t_table table);
+void			print_dead(t_philo *philo, unsigned long long t, int i);
+void			print_sleep(t_philo *philo, unsigned long long t, int i);
+void			print_think(t_philo *philo, unsigned long long t, int i);
+void			print_fork(t_philo *philo, unsigned long long t, int i);
+void			print_eat(t_philo *philo, unsigned long long t, int i);
+void			start_life(char **argv, t_philo *philo, pthread_t *p, t_table table);
+void			ft_sleep(t_philo *philo);
+void			philo_eat_odd(t_philo *philo);
+void			philo_eat_even(t_philo *philo);
+void			philo_eat_last(t_philo *philo);
+int				philo_even(t_philo *philo, pthread_t monitor);
+int				philo_odd(t_philo *philo, pthread_t monitor);
+void			ft_exit(void);
 
 #endif

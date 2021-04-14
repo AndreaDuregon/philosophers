@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_turn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/13 17:39:07 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/14 19:59:07 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,19 @@ void	philo_eat_odd(t_philo *philo)
 
 void	philo_eat_even(t_philo *philo)
 {
+	int sleeped;
+	
+	sleeped = 0;
 	pthread_mutex_lock(&(philo->table->status));
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
 	philo->table->cont++;
 	philo->remain_meal++;
+	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
 	if (philo->table->cont == philo->table->num_philo / 2)
 	{
+		sleeped = 1;
+		usleep(philo->table->time_to_eat);
 		if (philo->table->round == 1)
 		{
 			philo->table->turn++;
@@ -54,10 +60,10 @@ void	philo_eat_even(t_philo *philo)
 			philo->table->round = 1;
 		philo->table->cont = 0;
 	}
-	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-	usleep(philo->table->time_to_eat);
 	pthread_mutex_unlock(&(philo->table->status));
 	philo->eat_time = get_time_stamp();
+	if(!sleeped)
+		usleep(philo->table->time_to_eat);
 }
 
 void	philo_eat_last(t_philo *philo)

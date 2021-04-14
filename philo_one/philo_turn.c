@@ -6,7 +6,7 @@
 /*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/14 19:59:07 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/04/14 20:14:00 by simonegiovo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	philo_eat_odd(t_philo *philo)
 {
+	int sleeped;
+
+	sleeped = 0;
 	pthread_mutex_lock(&(philo->table->status));
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
@@ -21,6 +24,8 @@ void	philo_eat_odd(t_philo *philo)
 	philo->remain_meal++;
 	if (philo->table->cont == philo->table->num_philo / 2)
 	{
+		usleep(philo->table->time_to_eat);
+		sleeped = 1;
 		if (philo->table->round == 1)
 		{
 			philo->table->turn++;
@@ -32,7 +37,8 @@ void	philo_eat_odd(t_philo *philo)
 	}
 	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
 	pthread_mutex_unlock(&(philo->table->status));
-	usleep(philo->table->time_to_eat);
+	if (!sleeped)
+		usleep(philo->table->time_to_eat);
 	philo->eat_time = get_time_stamp();
 }
 
@@ -74,8 +80,8 @@ void	philo_eat_last(t_philo *philo)
 	philo->table->round = 0;
 	philo->remain_meal++;
 	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-	pthread_mutex_unlock(&(philo->table->status));
 	usleep(philo->table->time_to_eat);
+	pthread_mutex_unlock(&(philo->table->status));
 	philo->eat_time = get_time_stamp();
 }
 

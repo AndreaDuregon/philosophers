@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_turn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: simonegiovo <simonegiovo@student.42.fr>    +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/14 21:47:40 by simonegiovo      ###   ########.fr       */
+/*   Updated: 2021/04/14 23:29:25 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,9 @@ void	philo_eat_even(t_philo *philo)
 	/* int sleeped;
 	
 	sleeped = 0; */
-	pthread_mutex_lock(&(philo->table->status));
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	philo->table->cont++;
 	philo->remain_meal++;
-	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-	if (philo->table->cont == philo->table->num_philo / 2)
-	{
-		/* sleeped = 1;
-		usleep(philo->table->time_to_eat); */
-		if (philo->table->round == 1)
-		{
-			philo->table->turn++;
-			philo->table->round = 0;
-		}
-		else
-			philo->table->round = 1;
-		philo->table->cont = 0;
-	}
-	pthread_mutex_unlock(&(philo->table->status));
 	philo->eat_time = get_time_stamp();
-	/* if(!sleeped) */
 	usleep(philo->table->time_to_eat);
 }
 
@@ -87,11 +68,8 @@ void	philo_eat_last(t_philo *philo)
 
 int	philo_even(t_philo *philo, pthread_t monitor)
 {
-	if (philo->remain_meal == philo->table->turn)
-	{
-		philo_eat_even(philo);
-		ft_sleep(philo);
-	}
+	philo_eat_even(philo);
+	ft_sleep(philo);
 	if (philo->remain_meal == philo->table->num_meal)
 	{
 		philo->status = 1;

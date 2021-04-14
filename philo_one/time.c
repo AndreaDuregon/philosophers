@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:26:29 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/13 10:13:36 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/14 22:46:52 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-uint64_t	get_time_stamp(void)
+u_int64_t	get_time_stamp(void)
 {
     struct timeval tv;
     gettimeofday(&tv,NULL);

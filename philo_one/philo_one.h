@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/13 17:32:04 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/14 22:46:52 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,24 @@ typedef struct	s_table
 	int				cont;
 	int				turn;
 	int				num_philo;
-	uint64_t		time_to_die;
-	uint64_t		time_to_eat;
-	uint64_t		time_to_sleep;
+	u_int64_t		time_to_die;
+	u_int64_t		time_to_eat;
+	u_int64_t		time_to_sleep;
 	int				num_meal;
 	int				round;
-	uint64_t	 	now;
+	u_int64_t	 	now;
 	pthread_mutex_t	status;
 	pthread_mutex_t	print;
 	pthread_mutex_t	dead;
-	uint64_t		start;
+	u_int64_t		start;
 }				t_table;
 
 typedef struct s_philo
 {
 	int				id;
 	int				status;
-	uint64_t		eat_time;
-	uint64_t		sleep_time;
+	u_int64_t		eat_time;
+	u_int64_t		sleep_time;
 	int				remain_meal;
 	t_table			*table;
 }					t_philo;
@@ -53,7 +53,7 @@ int				ft_isspace(int c);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *nptr);
 void			input_error(void);
-uint64_t		get_time_stamp(void);
+u_int64_t		get_time_stamp(void);
 static	size_t	ft_nsize(int n);
 char			*ft_itoa(int n);
 size_t			ft_strlen(const char *s);

@@ -55,8 +55,8 @@ void	philo_eat_even(t_philo *philo)
 		philo->table->cont = 0;
 	}
 	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-	pthread_mutex_unlock(&(philo->table->status));
 	usleep(philo->table->time_to_eat);
+	pthread_mutex_unlock(&(philo->table->status));
 	philo->eat_time = get_time_stamp();
 }
 

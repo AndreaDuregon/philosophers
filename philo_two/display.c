@@ -19,7 +19,7 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	sem_wait(&(philo->table->print));
+	sem_wait((philo->table->print));
 	write(1, timestamp, ft_strlen(timestamp));
 	write(1, " ", 1);
 	write(1, id, ft_strlen(id));
@@ -28,7 +28,7 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 	free(timestamp);
 	free(id);
 	exit(0);
-	sem_post(&(philo->table->print));
+	sem_post((philo->table->print));
 }
 
 void	print_sleep(t_philo *philo, unsigned long long t, int i)
@@ -38,7 +38,7 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	sem_wait(&(philo->table->print));
+	sem_wait((philo->table->print));
 	write(1, timestamp, ft_strlen(timestamp));
 	write(1, " ", 1);
 	write(1, id, ft_strlen(id));
@@ -46,7 +46,7 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 	write(1, "is sleeping\n", 12);
 	free(timestamp);
 	free(id);
-	sem_post(&(philo->table->print));
+	sem_post((philo->table->print));
 }
 
 void	print_think(t_philo *philo, unsigned long long t, int i)
@@ -56,7 +56,7 @@ void	print_think(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	sem_wait(&(philo->table->print));
+	sem_wait((philo->table->print));
 	write(1, timestamp, ft_strlen(timestamp));
 	write(1, " ", 1);
 	write(1, id, ft_strlen(id));
@@ -64,7 +64,7 @@ void	print_think(t_philo *philo, unsigned long long t, int i)
 	write(1, "is thinking\n", 12);
 	free(timestamp);
 	free(id);
-	sem_post(&(philo->table->print));
+	sem_post((philo->table->print));
 }
 
 void	print_fork(t_philo *philo, unsigned long long t, int i)
@@ -74,7 +74,7 @@ void	print_fork(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	sem_wait(&(philo->table->print));
+	sem_wait((philo->table->print));
 	write(1, timestamp, ft_strlen(timestamp));
 	write(1, " ", 1);
 	write(1, id, ft_strlen(id));
@@ -82,7 +82,7 @@ void	print_fork(t_philo *philo, unsigned long long t, int i)
 	write(1, "has taken a fork\n", 17);
 	free(timestamp);
 	free(id);
-	sem_post(&(philo->table->print));
+	sem_post((philo->table->print));
 }
 
 void	print_eat(t_philo *philo, unsigned long long t, int i)
@@ -92,7 +92,7 @@ void	print_eat(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	sem_wait(&(philo->table->print));
+	sem_wait((philo->table->print));
 	write(1, timestamp, ft_strlen(timestamp));
 	write(1, " ", 1);
 	write(1, id, ft_strlen(id));
@@ -100,5 +100,5 @@ void	print_eat(t_philo *philo, unsigned long long t, int i)
 	write(1, "is eating\n", 10);
 	free(timestamp);
 	free(id);
-	sem_post(&(philo->table->print));
+	sem_post((philo->table->print));
 }

@@ -32,8 +32,8 @@ typedef struct	s_table
 	int				round;
 	uint64_t	 	now;
 	sem_t			*status;
-	sem_t			print;
-	sem_t			dead;
+	sem_t			*print;
+	sem_t			*dead;
 	uint64_t		start;
 }				t_table;
 

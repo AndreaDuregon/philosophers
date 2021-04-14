@@ -26,14 +26,14 @@ void	*is_dead(void *input)
 	philo = (t_philo *)input;
 	while (1)
 	{
-		sem_wait(&(philo->table->dead));
+		sem_wait((philo->table->dead));
 		if (philo->status)
 			return (NULL);
 		if (get_time_stamp() - philo->eat_time > philo->table->time_to_die && \
 			philo->table->time_to_eat != 0 && philo->table->time_to_sleep != 0)
 			print_dead(philo, get_time_stamp() - \
 						philo->table->start, philo->id);
-		sem_post(&(philo->table->dead));
+		sem_post((philo->table->dead));
 	}
 	return (NULL);
 }
@@ -44,7 +44,6 @@ void	*philosopher(void *input)
 	pthread_t		monitor;
 	int				i;
 
-		printf("@OK\n");
 	philo = (t_philo *)input;
 	philo->remain_meal = 0;
 	i = 0;
@@ -95,8 +94,6 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 
 	while (i < table.num_philo)
 	{
-
-		printf("@CIAOOK\n");
 		pthread_create(&p[i], NULL, &philosopher, (void *)&philo[i]);
 		i++;
 	}

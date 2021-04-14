@@ -52,20 +52,12 @@ t_table	init_table(char **argv, int argc)
 
 	table = init_table2(table, argv, argc);
 	table.start = get_time_stamp();
-	sem_init(&print, 0, 1);
-	sem_init(&dead, 0, 1);
-	table.status = sem_open("/status_sem", O_CREAT, 0644, 256);
-	table.print = print;
-	table.dead = dead;
-	int valp;
-	sem_getvalue(table.status, &valp);
-	printf("--->%d\n",valp);
-
-	sem_wait(table.status);
-	sem_post(table.status);
-	sem_post(table.status);	sem_post(table.status);
-	sem_getvalue(table.status, &valp);
-	printf("--->%d\n",valp);
+	sem_unlink("/status_sem");
+	sem_unlink("/print_sem");
+	sem_unlink("/dead_sem");
+	table.status = sem_open("/status_sem", O_CREAT, 01411, 1);
+	table.print = sem_open("/print_sem", O_CREAT, 01411, 1);
+	table.dead = sem_open("/dead_sem", O_CREAT, 01411, 1);
 	if (table.time_to_eat == 0 && table.time_to_sleep == 0)
 		table.time_to_eat = 1001;
 	return (table);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 00:13:56 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/15 10:41:08 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 void stringer(char *timestamp, char *id, char *phrase, char final[1000])
 {
-	int i;
 	int j;
 
-	i = 0;
 	j = 0;
-	while(timestamp[i])
-		final[j++]=timestamp[i++];
-	i = 0;
+	while(*timestamp)
+		final[j++]=*timestamp++;
 	final[j++]= ' ';
-	while(id[i])
-		final[j++]=id[i++];
+	while(*id)
+		final[j++]=*id++;
 	final[j++]= ' ';
-	while(phrase[i])
-		final[j++] = phrase[i++];
+	while(*phrase)
+		final[j++] = *phrase++;
 	final[j] = 0;
 }
 
@@ -38,7 +35,7 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 	char 	text[1000];
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, " is dead\n", &text);
+	stringer(timestamp, id, "is dead\n", &text);
 	pthread_mutex_lock(&(philo->table->print));
 	write(1, text, ft_strlen(text));
 	pthread_mutex_unlock(&(philo->table->print));
@@ -55,7 +52,7 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, " is sleeping\n", &text);
+	stringer(timestamp, id, "is sleeping\n", &text);
 	pthread_mutex_lock(&(philo->table->print));
 	write(1, text, ft_strlen(text));
 	pthread_mutex_unlock(&(philo->table->print));
@@ -72,7 +69,7 @@ void	print_think(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id," is thinking\n", &text);
+	stringer(timestamp, id,"is thinking\n", &text);
 	pthread_mutex_lock(&(philo->table->print));
 	write(1, text, ft_strlen(text));
 	pthread_mutex_unlock(&(philo->table->print));
@@ -90,8 +87,8 @@ void	print_fork(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, " has taken a fork\n", text);
-	stringer(timestamp, id, " is eating\n", text2);
+	stringer(timestamp, id, "has taken a fork\n", text);
+	stringer(timestamp, id, "is eating\n", text2);
 	pthread_mutex_lock(&(philo->table->print));
 	write(1, text, ft_strlen(text));
 	write(1, text, ft_strlen(text));
@@ -109,7 +106,7 @@ void	print_eat(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, " is eating\n", &text);
+	stringer(timestamp, id, "is eating\n", &text);
 	pthread_mutex_lock(&(philo->table->print));
 	write(1, text, ft_strlen(text));
 	pthread_mutex_unlock(&(philo->table->print));

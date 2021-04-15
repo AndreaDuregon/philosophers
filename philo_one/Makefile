@@ -28,4 +28,4 @@ re		:	fclean all
 run		:	$(NAME)
 			./$(NAME) 4 410 200 200
 
-.PHONY	:	all	clean fclean re
+.PHONY	:	all	clean fclean re run

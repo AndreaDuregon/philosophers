@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 11:27:52 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/15 12:23:00 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ void	philo_eat_odd(t_philo *philo)
 
 void	philo_eat_even(t_philo *philo)
 {
-	/* int sleeped;
-	
-	sleeped = 0; */
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
 	philo->remain_meal++;
 	philo->eat_time = get_time_stamp();

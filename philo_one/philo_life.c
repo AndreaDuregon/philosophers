@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/14 23:55:37 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/15 11:33:14 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,21 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 			k++;
 			i = 1;
 		}
+	}
+	else
+	{
+		while (k < 2)
+		{
+			while (i < (table.num_philo - 1))
+			{
+				pthread_create(&p[i], NULL, &philosopher_odd, &philo[i]);
+				i += 2;
+			}
+			usleep(philo->table->time_to_eat);
+			k++;
+			i = 1;
+		}
+		pthread_create(&p[table.num_philo - 1], NULL, &philosopher_odd, &philo[table.num_philo - 1]);
 	}
 	k = 0;
 	while (k < i)

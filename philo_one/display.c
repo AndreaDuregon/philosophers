@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 10:41:08 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/15 11:15:12 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 void stringer(char *timestamp, char *id, char *phrase, char final[1000])
 {
-	int j;
-
-	j = 0;
 	while(*timestamp)
-		final[j++]=*timestamp++;
-	final[j++]= ' ';
+		*final++ = *timestamp++;
+	*final++ = ' ';
 	while(*id)
-		final[j++]=*id++;
-	final[j++]= ' ';
+		*final++ = *id++;
+	*final++ = ' ';
 	while(*phrase)
-		final[j++] = *phrase++;
-	final[j] = 0;
+		*final++ = *phrase++;
+	*final = 0;
 }
 
 void	print_dead(t_philo *philo, unsigned long long t, int i)
@@ -33,6 +30,7 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 	char	*timestamp;
 	char	*id;
 	char 	text[1000];
+
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
 	stringer(timestamp, id, "is dead\n", &text);

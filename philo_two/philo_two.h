@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one.h                                        :+:      :+:    :+:   */
+/*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/14 22:49:39 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/15 12:11:50 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_ONE_H
-# define PHILO_ONE_H
+#ifndef PHILO_TWO_H
+# define PHILO_TWO_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <semaphore.h>
 # include <semaphore.h>
 
 typedef struct	s_table
@@ -35,7 +36,7 @@ typedef struct	s_table
 	sem_t			*print;
 	sem_t			*dead;
 	u_int64_t		start;
-}				t_table;
+}					t_table;
 
 typedef struct s_philo
 {

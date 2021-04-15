@@ -1,6 +1,6 @@
-NAME	=	philo_one
+NAME	=	philo_two
 
-SRCS	=	philo_one.c \
+SRCS	=	philo_two.c \
 			utils.c \
 			utils2.c \
 			exit.c \
@@ -15,7 +15,7 @@ OBJS	=	$(SRCS:.c=.o)
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-			@gcc -lpthread -Wall -Wextra -Werror -o $(NAME) $(OBJS)
+			@gcc -lpthread -pthread -Wall -Wextra -Werror -O3 -o $(NAME) $(OBJS)
 
 clean	:	
 			rm -f $(OBJS)
@@ -25,4 +25,7 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	:	all	clean fclean re
+run		:	$(NAME)
+			./$(NAME) 4 410 200 200
+
+.PHONY	:	all	clean fclean re run

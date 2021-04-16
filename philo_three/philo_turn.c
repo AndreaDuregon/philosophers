@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_turn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 13:29:37 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/16 17:59:38 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ int	philo_even(t_philo *philo, pthread_t monitor)
 		pthread_detach(monitor);
 		exit(0);
 		return (0);
+	}
+	if (philo->status == 2)
+	{
+		puts("skjdbvdsvbkbdfsvsivbsubvasdbvksudbvklsdbnvlisbdn lsbdvlsdbgvsilbvsilbdvlsbivalbcivaibsvasivnas");
+		kill(philo->table->father, SIGTERM);
 	}
 	return (1);
 }

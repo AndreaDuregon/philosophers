@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_three.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 12:28:45 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/16 17:57:21 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <semaphore.h>
-# include <semaphore.h>
+# include <signal.h>
 
 typedef struct	s_table
 {
@@ -36,6 +37,7 @@ typedef struct	s_table
 	sem_t			*print;
 	sem_t			*dead;
 	u_int64_t		start;
+	pid_t			father;
 }					t_table;
 
 typedef struct s_philo
@@ -46,6 +48,7 @@ typedef struct s_philo
 	u_int64_t		sleep_time;
 	int				remain_meal;
 	t_table			*table;
+	pid_t			pid;
 }					t_philo;
 
 

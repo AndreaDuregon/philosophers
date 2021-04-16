@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 12:19:25 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/16 12:54:27 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, "is dead\n", &text);
-	sem_wait((philo->table->print));
-	write(1, text, ft_strlen(text));
-	sem_post((philo->table->print));
+	//stringer(timestamp, id, "is dead\n", &text);
+	sem_wait(philo->table->print);
+	//write(1, text, ft_strlen(text));
+	printf("%llu %d is dead\n", t, i);
 	free(timestamp);
 	free(id);
 	exit(0);
+	sem_post(philo->table->print);
 }
 
 void	print_sleep(t_philo *philo, unsigned long long t, int i)
@@ -50,10 +51,11 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, "is sleeping\n", &text);
-	sem_wait((philo->table->print));
-	write(1, text, ft_strlen(text));
-	sem_post((philo->table->print));
+	// stringer(timestamp, id, "is sleeping\n", &text);
+	sem_wait(philo->table->print);
+	// write(1, text, ft_strlen(text));
+	printf("%llu %d is sleeping\n", t, i);
+	sem_post(philo->table->print);
 	usleep(philo->table->time_to_sleep);
 	free(timestamp);
 	free(id);
@@ -67,10 +69,11 @@ void	print_think(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id,"is thinking\n", &text);
-	sem_wait((philo->table->print));
-	write(1, text, ft_strlen(text));
-	sem_post((philo->table->print));
+	// stringer(timestamp, id,"is thinking\n", &text);
+	sem_wait(philo->table->print);
+	// write(1, text, ft_strlen(text));
+	printf("%llu %d is thinking\n", t, i);
+	sem_post(philo->table->print);
 	free(timestamp);
 	free(id);
 }
@@ -85,13 +88,16 @@ void	print_fork(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, "has taken a fork\n", text);
-	stringer(timestamp, id, "is eating\n", text2);
-	sem_wait((philo->table->print));
-	write(1, text, ft_strlen(text));
-	write(1, text, ft_strlen(text));
-	write(1, text2, ft_strlen(text2));
-	sem_post((philo->table->print));
+	// stringer(timestamp, id, "has taken a fork\n", text);
+	// stringer(timestamp, id, "is eating\n", text2);
+	sem_wait(philo->table->print);
+	// write(1, text, ft_strlen(text));
+	// write(1, text, ft_strlen(text));
+	// write(1, text2, ft_strlen(text2));
+	printf("%llu %d is taken a fork\n", t, i);
+	printf("%llu %d is taken a fork\n", t, i);
+	printf("%llu %d is eating\n", t, i);
+	sem_post(philo->table->print);
 	free(timestamp);
 	free(id);
 }
@@ -104,10 +110,10 @@ void	print_eat(t_philo *philo, unsigned long long t, int i)
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
-	stringer(timestamp, id, "is eating\n", &text);
-	sem_wait((philo->table->print));
-	write(1, text, ft_strlen(text));
-	sem_post((philo->table->print));
+	// stringer(timestamp, id, "is eating\n", &text);
+	sem_wait(philo->table->print);
+	// write(1, text, ft_strlen(text));
+	sem_post(philo->table->print);
 	free(timestamp);
 	free(id);
 }

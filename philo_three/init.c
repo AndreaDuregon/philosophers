@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 13:21:04 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:31:16 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ t_table	init_table(char **argv, int argc)
 	sem_unlink("/status_sem");
 	sem_unlink("/print_sem");
 	sem_unlink("/dead_sem");
-	//table.status = sem_open("/status_sem", O_CREAT, 01411, 1);
-	//table.print = sem_open("/print_sem", O_CREAT, 01411, 1);
-	//table.dead = sem_open("/dead_sem", O_CREAT, 01411, 1);
+	table.status = sem_open("/status_sem", O_CREAT, 01411, 1);
+	table.print = sem_open("/print_sem", O_CREAT, 01411, 1);
+	table.dead = sem_open("/dead_sem", O_CREAT, 01411, 1);
 	if (table.time_to_eat == 0 && table.time_to_sleep == 0)
 		table.time_to_eat = 1001;
 	return (table);
@@ -73,6 +73,7 @@ t_philo	*init_philo(t_table table)
 	while (i < table.num_philo)
 	{
 		philo[i].id = i;
+		philo[i].status = 0;
 		philo[i].remain_meal = 0;
 		philo[i].table = &table;
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aduregon <aduregon@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/16 18:03:24 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/18 11:41:22 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	*is_dead(void *input)
 			philo->table->time_to_eat != 0 && philo->table->time_to_sleep != 0)
 		{
 			print_dead(philo, get_time_stamp() - \
-						philo->table->start, philo->id);		
+						philo->table->start, philo->id);
+			kill(philo->pid, SIGINT);
 			philo->status = 2;
 			break ;
 		}
@@ -115,8 +116,6 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 			while (i < table.num_philo)
 			{
 				philo->pid = fork();
-				if (philo->pid)
-					printf("%d-=------------------------\n", philo->pid);
 				if (philo->pid == 0)
 					philosopher((void *)&philo[i]);
 				else
@@ -143,15 +142,10 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 		pthread_create(&p[table.num_philo - 1], NULL, &philosopher_odd, &philo[table.num_philo - 1]);
 	}
 	k = 0;
-	if (!philo->pid)
+	while (k < table.num_philo)
 	{
-		exit(0);
-	}
-	else
-	{
-		j = -1;
-		while (++j < table.num_philo)
-			waitpid(philo[j].pid, NULL, 0);
+		waitpid(philo[k].pid, NULL, 0);
+		k++;
 	}
 	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_turn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aduregon <aduregon@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/16 17:59:38 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/18 11:37:41 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,10 @@ int	philo_even(t_philo *philo, pthread_t monitor)
 		philo->status = 1;
 		pthread_detach(monitor);
 		exit(0);
-		return (0);
+		return (1);
 	}
 	if (philo->status == 2)
-	{
-		puts("skjdbvdsvbkbdfsvsivbsubvasdbvksudbvklsdbnvlisbdn lsbdvlsdbgvsilbvsilbdvlsbivalbcivaibsvasivnas");
-		kill(philo->table->father, SIGTERM);
-	}
+		exit(2);
 	return (1);
 }
 

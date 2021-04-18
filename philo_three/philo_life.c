@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <aduregon@42.fr>                  +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/18 11:41:22 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/18 15:39:41 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	*is_dead(void *input)
 			print_dead(philo, get_time_stamp() - \
 						philo->table->start, philo->id);
 			kill(philo->pid, SIGINT);
-			philo->status = 2;
-			break ;
 		}
 		sem_post((philo->table->dead));
 	}
@@ -117,7 +115,10 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 			{
 				philo->pid = fork();
 				if (philo->pid == 0)
+				{
 					philosopher((void *)&philo[i]);
+					exit(0);
+				}
 				else
 					i += 2;
 			}

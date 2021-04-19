@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 17:09:01 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 18:49:58 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	*is_dead(void *input)
 			print_dead(philo, get_time_stamp() - \
 						philo->table->start, philo->id);
 			philo->table->is_dead = 1;
+			sem_post((philo->table->dead));
 			return (NULL);
 		}
 		sem_post((philo->table->dead));
@@ -56,6 +57,7 @@ void	*philosopher(void *input)
 		}
 		else
 		{
+			philo->status = 1;
 			pthread_detach(monitor);
 			return (NULL);
 		}

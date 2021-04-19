@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 17:11:10 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 18:45:00 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	philo_eat(t_philo *philo)
 		philo->table->start, philo->id);
 	sem_post((philo->table->dead));
 	philo->remain_meal++;
-	sem_post((philo->table->status));
 	ft_usleep((float)philo->table->time_to_eat);
+	sem_post((philo->table->status));
 	philo->eat_time = get_time_stamp();
 }
 
@@ -61,5 +61,5 @@ void	wait_turn(t_philo *philo)
 		ft_usleep((float)philo->table->time_to_eat);
 	if (philo->table->num_philo % 2 == 1 && \
 		philo->id == philo->table->num_philo - 1)
-		ft_usleep(((float)philo->table->time_to_eat) + 10);
+		ft_usleep(((float)philo->table->time_to_eat) * 1.5);
 }

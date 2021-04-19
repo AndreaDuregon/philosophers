@@ -12,6 +12,9 @@ SRCS	=	philo_two.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
+%.o 	:	%.c
+			$(CC) -Wall -Wextra -Werror -c $< -o $@
+
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)

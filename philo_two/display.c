@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/16 12:54:27 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:28:13 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void stringer(char *timestamp, char *id, char *phrase, char final[1000])
+void	stringer(char *timestamp, char *id, char *phrase, char final[1000])
 {
-	while(*timestamp)
+	while (*timestamp)
 		*final++ = *timestamp++;
 	*final++ = ' ';
-	while(*id)
+	while (*id)
 		*final++ = *id++;
 	*final++ = ' ';
-	while(*phrase)
+	while (*phrase)
 		*final++ = *phrase++;
 	*final = 0;
 }
@@ -29,7 +29,7 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 {
 	char	*timestamp;
 	char	*id;
-	char 	text[1000];
+	char	text[1000];
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
@@ -47,7 +47,7 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 {
 	char	*timestamp;
 	char	*id;
-	char 	*text[1000];
+	char	*text[1000];
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
@@ -65,7 +65,7 @@ void	print_think(t_philo *philo, unsigned long long t, int i)
 {
 	char	*timestamp;
 	char	*id;
-	char 	*text[1000];
+	char	*text[1000];
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);

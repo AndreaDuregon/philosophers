@@ -6,9 +6,10 @@ SRCS	=	philo_one.c \
 			exit.c \
 			time.c \
 			init.c \
-			display.c \
+			display1.c \
+			display2.c \
 			philo_life.c \
-			philo_turn.c
+			philo_action.c
 
 OBJS	=	$(SRCS:.c=.o)
 

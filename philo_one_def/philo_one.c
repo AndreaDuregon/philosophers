@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:20:26 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/18 16:52:09 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 13:02:21 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int	main(int argc, char **argv)
 	table = init_table(argv, argc);
 	philo = init_philo(table);
 	start_life(argv, philo, p, table);
-	//free(philo);
-	//free(p);
+	free(philo);
+	free(p);
 }

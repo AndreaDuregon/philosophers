@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 12:29:38 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 13:18:55 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,44 +44,15 @@ void	*philosopher(void *input)
 	philo->remain_meal = 0;
 	philo->eat_time = get_time_stamp();
 	pthread_create(&monitor, NULL, &is_dead, &(*input));
-	if (philo->id % 2 == 1)
-		ft_usleep((float)philo->table->time_to_eat);
-	if (philo->table->num_philo % 2 == 1 && philo->id == philo->table->num_philo - 1)
-		ft_usleep(((float)philo->table->time_to_eat) * 2);
+	wait_turn(philo);
 	while (1)
 	{
 		if (!philo->table->is_dead && (philo->remain_meal < \
 		philo->table->num_meal || philo->table->num_meal == -1))
 		{
-			pthread_mutex_lock(&philo->table->fork[philo->id]);
-			print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-			if (philo->id == philo->table->num_philo - 1)
-			{
-				pthread_mutex_lock(&philo->table->fork[0]);
-				print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-				pthread_mutex_lock(&(philo->table->dead));
-				print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-				pthread_mutex_unlock(&(philo->table->dead));
-				philo->remain_meal++;
-				pthread_mutex_unlock(&philo->table->fork[0]);
-			}
-			else
-			{
-				pthread_mutex_lock(&philo->table->fork[philo->id + 1]);
-				print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-				pthread_mutex_lock(&(philo->table->dead));
-				print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-				pthread_mutex_unlock(&(philo->table->dead));
-				philo->remain_meal++;
-				pthread_mutex_unlock(&philo->table->fork[philo->id + 1]);
-			}
-			pthread_mutex_unlock(&philo->table->fork[philo->id]);
-			ft_usleep((float)philo->table->time_to_eat);
-			philo->eat_time = get_time_stamp();
-			philo->is_eating = 0;
-			print_sleep(philo, get_time_stamp() - philo->table->start, philo->id);
-			ft_usleep((float)philo->table->time_to_sleep);
-			print_think(philo, get_time_stamp() - philo->table->start, philo->id);
+			philo_eat(philo);
+			philo_sleep(philo);
+			philo_think(philo);
 		}
 		else
 		{
@@ -95,7 +66,6 @@ void	*philosopher(void *input)
 void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 {
 	int	i;
-	int	k;
 
 	i = 0;
 	while (i < table.num_philo)
@@ -105,22 +75,19 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 		pthread_create(&p[i], NULL, &philosopher, (void *)&philo[i]);
 		i += 2;
 	}
-	//usleep(philo->table->time_to_eat);
 	i = 1;
 	while (i < table.num_philo)
 	{
 		pthread_create(&p[i], NULL, &philosopher, (void *)&philo[i]);
 		i += 2;
 	}
-	//ft_usleep((float)philo->table->time_to_eat * 0.9 + 1);
 	if (table.num_philo % 2 == 1)
-		pthread_create(&p[table.num_philo - 1], NULL, &philosopher, (void *)&philo[table.num_philo - 1]);
-	k = 0;
-	while (k < table.num_philo)
+		pthread_create(&p[table.num_philo - 1], NULL, &philosopher,
+			(void *)&philo[table.num_philo - 1]);
+	i = 0;
+	while (i < table.num_philo)
 	{
-		pthread_join(p[k], NULL);
-		pthread_detach(p[k++]);
-		k++;
+		pthread_join(p[i], NULL);
+		pthread_detach(p[i++]);
 	}
 }
-

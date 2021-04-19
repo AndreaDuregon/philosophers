@@ -12,15 +12,15 @@
 
 #include "philo_two.h"
 
-void stringer(char *timestamp, char *id, char *phrase, char final[1000])
+void	stringer(char *timestamp, char *id, char *phrase, char final[1000])
 {
-	while(*timestamp)
+	while (*timestamp)
 		*final++ = *timestamp++;
 	*final++ = ' ';
-	while(*id)
+	while (*id)
 		*final++ = *id++;
 	*final++ = ' ';
-	while(*phrase)
+	while (*phrase)
 		*final++ = *phrase++;
 	*final = 0;
 }

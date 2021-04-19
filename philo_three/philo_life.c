@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/18 15:39:41 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:30:38 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*philosopher(void *input)
 			break ;
 	}
 	exit(0);
-	return(NULL);
+	return (NULL);
 }
 
 void	*alone_philosopher(void *input)
@@ -73,12 +73,8 @@ void	*alone_philosopher(void *input)
 
 void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 {
-	int		i;
-	int		k;
 	int		j;
 
-	i = 0;
-	k = 0;
 	if (ft_atoi(argv[1]) == 1)
 	{
 		pthread_create(&p[i], NULL, &alone_philosopher, &philo[i]);
@@ -88,22 +84,5 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 		exit(0);
 	}
 	philo->table->father = getpid();
-	while (i < table.num_philo)
-	{
-		philo->pid = fork();
-		if (philo->pid == 0)
-		{
-			philosopher((void *)&philo[i]);
-			exit(0);
-		}
-		else
-			i += 1;
-	}
-	k = 0;
-	while (k < table.num_philo)
-	{
-		waitpid(philo[k].pid, NULL, 0);
-		k++;
-	}
-	exit(0);
+	pid_born(philo, p, table);
 }

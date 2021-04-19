@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_action.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 13:17:53 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 16:33:49 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ void	philo_think(t_philo *philo)
 
 void	wait_turn(t_philo *philo)
 {
-	if (philo->id % 2 == 1)
+	if (philo->id % 2 == 1 && philo->table->num_philo != 1)
 		ft_usleep((float)philo->table->time_to_eat);
 	if (philo->table->num_philo % 2 == 1 && \
-		philo->id == philo->table->num_philo - 1)
+		philo->id == philo->table->num_philo - 1 && \
+			philo->table->num_philo != 1)
 		ft_usleep(((float)philo->table->time_to_eat) + 10);
 }

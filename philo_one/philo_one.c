@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:20:26 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 16:18:55 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 16:30:50 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ int	main(int argc, char **argv)
 	p = ft_calloc(ft_atoi(argv[1]), sizeof(pthread_t));
 	table = init_table(argv, argc);
 	philo = init_philo(table);
-	start_life(philo, p, table);
+	if (philo->table->num_philo == 1)
+	{
+		printf("UNO SOLO\n");
+	}
+	else
+		start_life(philo, p, table);
 	free(table.fork);
 	free(philo);
 	free(p);

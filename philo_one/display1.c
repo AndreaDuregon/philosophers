@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 16:18:07 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 16:33:30 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 	{
 		pthread_mutex_unlock(&(philo->table->print));
 		free(timestamp);
-		free(id);		
+		free(id);
 		return ;
 	}
 	write(1, text, ft_strlen(text));

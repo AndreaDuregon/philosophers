@@ -7,7 +7,9 @@ SRCS	=	philo_three.c \
 			time.c \
 			init.c \
 			display.c \
+			display2.c \
 			philo_life.c \
+			philo_life2.c \
 			philo_turn.c
 
 OBJS	=	$(SRCS:.c=.o)

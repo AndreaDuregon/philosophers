@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/16 16:31:16 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:25:54 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_table	init_table(char **argv, int argc)
 	sem_unlink("/status_sem");
 	sem_unlink("/print_sem");
 	sem_unlink("/dead_sem");
-	table.status = sem_open("/status_sem", O_CREAT, 01411, table.num_philo/2);
+	table.status = sem_open("/status_sem", O_CREAT, 01411, table.num_philo / 2);
 	table.print = sem_open("/print_sem", O_CREAT, 01411, 1);
 	table.dead = sem_open("/dead_sem", O_CREAT, 01411, 1);
 	if (table.time_to_eat == 0 && table.time_to_sleep == 0)

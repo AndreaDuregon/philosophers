@@ -80,7 +80,7 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 		pthread_join(p[i], NULL);
 		free(philo);
 		free(p);
-		exit(0);
+		return ;
 	}
 	while (i < table.num_philo)
 	{

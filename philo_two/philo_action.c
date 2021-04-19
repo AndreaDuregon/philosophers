@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 16:00:57 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:11:10 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,13 @@ void	philo_eat(t_philo *philo)
 	sem_wait((philo->table->status));
 	print_fork(philo, get_time_stamp() - \
 				philo->table->start, philo->id);
-	if (philo->id == philo->table->num_philo - 1)
-	{
-		take_first_fork(philo);
-	}
-	else
-	{
-		//sem_wait((philo->table->status));
-		print_fork(philo, get_time_stamp() - \
-					philo->table->start, philo->id);
-		sem_wait((philo->table->dead));
-		print_eat(philo, get_time_stamp() - \
-				philo->table->start, philo->id);
-		sem_post((philo->table->dead));
-		philo->remain_meal++;
-		//sem_post((philo->table->status));
-	}
+	print_fork(philo, get_time_stamp() - \
+		philo->table->start, philo->id);
+	sem_wait((philo->table->dead));
+	print_eat(philo, get_time_stamp() - \
+		philo->table->start, philo->id);
+	sem_post((philo->table->dead));
+	philo->remain_meal++;
 	sem_post((philo->table->status));
 	ft_usleep((float)philo->table->time_to_eat);
 	philo->eat_time = get_time_stamp();

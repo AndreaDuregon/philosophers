@@ -3,35 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   philo_life.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:52:21 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:57:43 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void	ft_sleep(t_philo *philo)
-{
-	print_sleep(philo, get_time_stamp() - philo->table->start, philo->id);
-	print_think(philo, get_time_stamp() - philo->table->start, philo->id);
-}
-
 void	*is_dead(void *input)
 {
-	t_philo			*philo;
+	t_philo		*philo;
 
 	philo = (t_philo *)input;
 	while (1)
 	{
-		sem_wait((philo->table->dead));
-		if (philo->status)
+		if (philo->status == 1)
 			return (NULL);
+		sem_wait((philo->table->dead));
 		if (get_time_stamp() - philo->eat_time > philo->table->time_to_die && \
 			philo->table->time_to_eat != 0 && philo->table->time_to_sleep != 0)
+		{
 			print_dead(philo, get_time_stamp() - \
 						philo->table->start, philo->id);
+			philo->table->is_dead = 1;
+			return (NULL);
+		}
 		sem_post((philo->table->dead));
 	}
 	return (NULL);
@@ -39,59 +37,57 @@ void	*is_dead(void *input)
 
 void	*philosopher(void *input)
 {
-	t_philo			*philo;
-	pthread_t		monitor;
-	int				i;
+	t_philo		*philo;
+	pthread_t	monitor;
 
 	philo = (t_philo *)input;
 	philo->remain_meal = 0;
-	i = 0;
 	philo->eat_time = get_time_stamp();
 	pthread_create(&monitor, NULL, &is_dead, &(*input));
+	wait_turn(philo);
 	while (1)
 	{
-		if (!philo_even(philo, monitor))
-			break ;
+		if (!philo->table->is_dead && (philo->remain_meal < \
+		philo->table->num_meal || philo->table->num_meal == -1))
+		{
+			philo_eat(philo);
+			philo_sleep(philo);
+			philo_think(philo);
+		}
+		else
+		{
+			pthread_detach(monitor);
+			return (NULL);
+		}
 	}
-	return (NULL);
+	return (0);
 }
 
-void	*alone_philosopher(void *input)
+void	start_life(t_philo *philo, pthread_t *p, t_table table)
 {
-	t_philo			*philo;
-
-	philo = (t_philo *)input;
-	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	ft_usleep(philo->table->time_to_die * 1000);
-	print_dead(philo, get_time_stamp() - philo->table->start, philo->id);
-	exit(0);
-}
-
-void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
-{
-	int		i;
-	int		k;
+	int	i;
 
 	i = 0;
-	k = 0;
-	if (ft_atoi(argv[1]) == 1)
-	{
-		pthread_create(&p[i], NULL, &alone_philosopher, &philo[i]);
-		pthread_join(p[i], NULL);
-		free(philo);
-		free(p);
-		return ;
-	}
 	while (i < table.num_philo)
 	{
-		pthread_create(&p[i], NULL, &philosopher, &philo[i]);
-		i += 1;
+		if (table.num_philo % 2 == 1 && i == table.num_philo - 1)
+			break ;
+		pthread_create(&p[i], NULL, &philosopher, (void *)&philo[i]);
+		i += 2;
 	}
-	k = 0;
-	while (k < i)
+	i = 1;
+	while (i < table.num_philo)
 	{
-		pthread_join(p[k], NULL);
-		pthread_detach(p[k++]);
-		k++;
+		pthread_create(&p[i], NULL, &philosopher, (void *)&philo[i]);
+		i += 2;
+	}
+	if (table.num_philo % 2 == 1)
+		pthread_create(&p[table.num_philo - 1], NULL, &philosopher,
+			(void *)&philo[table.num_philo - 1]);
+	i = 0;
+	while (i < table.num_philo)
+	{
+		pthread_join(p[i], NULL);
+		pthread_detach(p[i++]);
 	}
 }

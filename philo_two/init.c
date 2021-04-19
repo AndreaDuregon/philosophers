@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:54:42 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:59:14 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	parse_input(char **argv, int argc)
 	return (1);
 }
 
-t_table	init_table2(t_table table, char **argv, int argc)
+t_table	init_table2(char **argv, int argc)
 {
-	table.round = 0;
-	table.cont = 0;
-	table.turn = 0;
+	t_table	table;
+
+	table.is_dead = 0;
 	table.num_philo = ft_atoi(argv[1]);
 	table.time_to_die = ft_atoi(argv[2]);
 	table.time_to_eat = ft_atoi(argv[3]);
@@ -46,11 +46,8 @@ t_table	init_table2(t_table table, char **argv, int argc)
 t_table	init_table(char **argv, int argc)
 {
 	t_table			table;
-	sem_t			status;
-	sem_t			print;
-	sem_t			dead;
 
-	table = init_table2(table, argv, argc);
+	table = init_table2(argv, argc);
 	table.start = get_time_stamp();
 	sem_unlink("/status_sem");
 	sem_unlink("/print_sem");
@@ -73,6 +70,7 @@ t_philo	*init_philo(t_table table)
 	while (i < table.num_philo)
 	{
 		philo[i].id = i;
+		philo[i].status = 0;
 		philo[i].remain_meal = 0;
 		philo[i].table = &table;
 		i++;

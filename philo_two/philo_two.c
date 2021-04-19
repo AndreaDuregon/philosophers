@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:20:26 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 12:09:00 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 15:48:54 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	p = ft_calloc(ft_atoi(argv[1]), sizeof(pthread_t));
 	table = init_table(argv, argc);
 	philo = init_philo(table);
-	start_life(argv, philo, p, table);
+	start_life(philo, p, table);
 	free(philo);
 	free(p);
 }

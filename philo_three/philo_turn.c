@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_turn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <aduregon@42.fr>                  +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:55:51 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/18 11:37:41 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 19:02:27 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	philo_eat_even(t_philo *philo)
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
 	philo->remain_meal++;
 	philo->eat_time = get_time_stamp();
-	usleep(philo->table->time_to_eat);
+	ft_usleep((float)philo->table->time_to_eat);
 }
 
 int	philo_even(t_philo *philo, pthread_t monitor)

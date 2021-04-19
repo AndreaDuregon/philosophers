@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:42:48 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 19:02:45 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_table	init_table2(char **argv, int argc)
 	table.turn = 0;
 	table.num_philo = ft_atoi(argv[1]);
 	table.time_to_die = ft_atoi(argv[2]);
-	table.time_to_eat = ft_atoi(argv[3]) * 1000;
-	table.time_to_sleep = ft_atoi(argv[4]) * 1000;
+	table.time_to_eat = ft_atoi(argv[3]);
+	table.time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table.num_meal = ft_atoi(argv[5]);
 	else

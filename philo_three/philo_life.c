@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 17:25:56 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 19:02:23 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	*alone_philosopher(void *input)
 
 	philo = (t_philo *)input;
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	usleep(philo->table->time_to_die * 1000);
+	ft_usleep((float)philo->table->time_to_die);
 	print_dead(philo, get_time_stamp() - philo->table->start, philo->id);
 	exit(0);
 }

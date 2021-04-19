@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 17:20:57 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 19:00:16 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int				philo_odd(t_philo *philo, pthread_t monitor);
 void			pid_born(t_philo *philo, t_table table);
 void			*philosopher(void *input);
 void			ft_exit(void);
+void			ft_usleep(int t);
 
 #endif

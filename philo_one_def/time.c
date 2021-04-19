@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:26:29 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/14 22:46:52 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 11:19:23 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,13 @@ u_int64_t	get_time_stamp(void)
     struct timeval tv;
     gettimeofday(&tv,NULL);
     return ((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000);
+}
+
+void	ft_usleep(int t)
+{
+	long	time;
+
+	time = get_time_stamp();
+	while (get_time_stamp() < time + t)
+		usleep(t);
 }

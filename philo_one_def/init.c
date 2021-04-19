@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/18 18:43:31 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 12:20:38 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_table	init_table2(t_table table, char **argv, int argc)
 	table.is_dead = 0;
 	table.num_philo = ft_atoi(argv[1]);
 	table.time_to_die = ft_atoi(argv[2]);
-	table.time_to_eat = ft_atoi(argv[3]) * 1000;
-	table.time_to_sleep = ft_atoi(argv[4]) * 1000;
+	table.time_to_eat = ft_atoi(argv[3]);
+	table.time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table.num_meal = ft_atoi(argv[5]);
 	else

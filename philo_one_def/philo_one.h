@@ -6,7 +6,7 @@
 /*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/18 18:41:37 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:19:40 by aduregon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int				ft_isdigit(int c);
 int				ft_atoi(const char *nptr);
 void			input_error(void);
 u_int64_t		get_time_stamp(void);
+void			ft_usleep(int t);
 static	size_t	ft_nsize(int n);
 char			*ft_itoa(int n);
 size_t			ft_strlen(const char *s);

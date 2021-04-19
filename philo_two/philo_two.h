@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 12:11:50 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:56:13 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <semaphore.h>
 # include <semaphore.h>
 
-typedef struct	s_table
+typedef struct s_table
 {
 	int				cont;
 	int				turn;
@@ -48,9 +48,8 @@ typedef struct s_philo
 	t_table			*table;
 }					t_philo;
 
-
 void			*ft_memset(void *s, int c, size_t n);
-void    		*ft_calloc(size_t nelem, size_t elsize);
+void			*ft_calloc(size_t nelem, size_t elsize);
 int				ft_isspace(int c);
 int				ft_isdigit(int c);
 int				ft_atoi(const char *nptr);
@@ -68,13 +67,15 @@ void			print_sleep(t_philo *philo, unsigned long long t, int i);
 void			print_think(t_philo *philo, unsigned long long t, int i);
 void			print_fork(t_philo *philo, unsigned long long t, int i);
 void			print_eat(t_philo *philo, unsigned long long t, int i);
-void			start_life(char **argv, t_philo *philo, pthread_t *p, t_table table);
+void			start_life(char **argv, t_philo *philo, pthread_t *p,
+					t_table table);
 void			ft_sleep(t_philo *philo);
 void			philo_eat_odd(t_philo *philo);
 void			philo_eat_even(t_philo *philo);
 void			philo_eat_last(t_philo *philo);
 int				philo_even(t_philo *philo, pthread_t monitor);
 int				philo_odd(t_philo *philo, pthread_t monitor);
+void			ft_usleep(int t);
 void			ft_exit(void);
 
 #endif

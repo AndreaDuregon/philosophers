@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/16 13:01:20 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:54:42 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_table	init_table2(t_table table, char **argv, int argc)
 	table.turn = 0;
 	table.num_philo = ft_atoi(argv[1]);
 	table.time_to_die = ft_atoi(argv[2]);
-	table.time_to_eat = ft_atoi(argv[3]) * 1000;
-	table.time_to_sleep = ft_atoi(argv[4]) * 1000;
+	table.time_to_eat = ft_atoi(argv[3]);
+	table.time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 		table.num_meal = ft_atoi(argv[5]);
 	else
@@ -55,7 +55,7 @@ t_table	init_table(char **argv, int argc)
 	sem_unlink("/status_sem");
 	sem_unlink("/print_sem");
 	sem_unlink("/dead_sem");
-	table.status = sem_open("/status_sem", O_CREAT, 01411, table.num_philo/2);
+	table.status = sem_open("/status_sem", O_CREAT, 01411, table.num_philo / 2);
 	table.print = sem_open("/print_sem", O_CREAT, 01411, 1);
 	table.dead = sem_open("/dead_sem", O_CREAT, 01411, 1);
 	if (table.time_to_eat == 0 && table.time_to_sleep == 0)

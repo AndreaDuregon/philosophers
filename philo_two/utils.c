@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 10:52:42 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/15 12:09:19 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:51:54 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
 
-void    *ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	char	*p;
 
-    p = (char *)malloc(nelem * elsize);
+	p = (char *)malloc(nelem * elsize);
 	if (!p)
 		ft_exit();
 	p = ft_memset(p, 0, nelem * elsize);
@@ -25,7 +25,7 @@ void    *ft_calloc(size_t nelem, size_t elsize)
 
 int	ft_isspace(int c)
 {
-	if (c == ' ' || c == '\f' || c == '\n' ||
+	if (c == ' ' || c == '\f' || c == '\n' || \
 	c == '\r' || c == '\t' || c == '\v')
 		return (1);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aduregon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 13:14:19 by aduregon         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:45:14 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 	}
 	write(1, text, ft_strlen(text));
 	pthread_mutex_unlock(&(philo->table->print));
-	usleep(philo->table->time_to_sleep);
 	free(timestamp);
 	free(id);
 }

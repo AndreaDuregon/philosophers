@@ -6,7 +6,7 @@
 /*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:36:43 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/04/19 14:57:47 by sgiovo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	parse_input(char **argv, int argc)
 
 t_table	init_table2(char **argv, int argc)
 {
-	t_table table;
- 
+	t_table	table;
+
 	table.is_dead = 0;
 	table.num_philo = ft_atoi(argv[1]);
 	table.time_to_die = ft_atoi(argv[2]);

@@ -6,7 +6,7 @@
 /*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 15:57:58 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 16:21:59 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 	if (philo->table->is_dead)
 	{
 		sem_post((philo->table->print));
+		free(timestamp);
+		free(id);
 		return ;
 	}
 	write(1, text, ft_strlen(text));
+	sem_post((philo->table->print));
 	free(timestamp);
 	free(id);
-	sem_post((philo->table->print));
 }
 
 void	print_sleep(t_philo *philo, unsigned long long t, int i)
@@ -59,6 +61,8 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 	if (philo->table->is_dead)
 	{
 		sem_post((philo->table->print));
+		free(timestamp);
+		free(id);
 		return ;
 	}
 	write(1, text, ft_strlen(text));
@@ -80,6 +84,8 @@ void	print_think(t_philo *philo, unsigned long long t, int i)
 	if (philo->table->is_dead)
 	{
 		sem_post((philo->table->print));
+		free(timestamp);
+		free(id);
 		return ;
 	}
 	write(1, text, ft_strlen(text));

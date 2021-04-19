@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/19 14:24:23 by forsili           #+#    #+#             */
-/*   Updated: 2021/04/19 14:43:48 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:20:48 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,22 @@
 
 void	print_think(t_philo *philo, unsigned long long t, int i)
 {
-	char	*timestamp;
-	char	*id;
-
-	timestamp = ft_itoa(t);
-	id = ft_itoa(i);
 	sem_wait(philo->table->print);
 	printf("%llu %d is thinking\n", t, i);
 	sem_post(philo->table->print);
-	free(timestamp);
-	free(id);
 }
 
 void	print_fork(t_philo *philo, unsigned long long t, int i)
 {
-	char	*timestamp;
-	char	*id;
-
-	timestamp = ft_itoa(t);
-	id = ft_itoa(i);
 	sem_wait(philo->table->print);
 	printf("%llu %d is taken a fork\n", t, i);
 	printf("%llu %d is taken a fork\n", t, i);
 	printf("%llu %d is eating\n", t, i);
 	sem_post(philo->table->print);
-	free(timestamp);
-	free(id);
 }
 
-void	print_eat(t_philo *philo, unsigned long long t, int i)
+void	print_eat(t_philo *philo)
 {
-	char	*timestamp;
-	char	*id;
-
-	timestamp = ft_itoa(t);
-	id = ft_itoa(i);
 	sem_wait(philo->table->print);
 	sem_post(philo->table->print);
-	free(timestamp);
-	free(id);
 }

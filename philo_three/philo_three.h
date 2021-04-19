@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_three.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:40:46 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:45:52 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:20:57 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			print_dead(t_philo *philo, unsigned long long t, int i);
 void			print_sleep(t_philo *philo, unsigned long long t, int i);
 void			print_think(t_philo *philo, unsigned long long t, int i);
 void			print_fork(t_philo *philo, unsigned long long t, int i);
-void			print_eat(t_philo *philo, unsigned long long t, int i);
+void			print_eat(t_philo *philo);
 void			start_life(char **argv, t_philo *philo, pthread_t *p, \
 							t_table table);
 void			ft_sleep(t_philo *philo);

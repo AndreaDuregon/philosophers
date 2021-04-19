@@ -6,13 +6,13 @@
 /*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:30:30 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:45:01 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void	pid_born(t_philo *philo, pthread_t *p, t_table table)
+void	pid_born(t_philo *philo, t_table table)
 {
 	int		i;
 	int		k;

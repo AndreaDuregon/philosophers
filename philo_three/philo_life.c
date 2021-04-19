@@ -6,7 +6,7 @@
 /*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:17:37 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:30:38 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:45:08 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ void	*alone_philosopher(void *input)
 
 void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 {
-	int		j;
+	int		i;
+	int		k;
 
+	i = 0;
+	k = 0;
 	if (ft_atoi(argv[1]) == 1)
 	{
 		pthread_create(&p[i], NULL, &alone_philosopher, &philo[i]);
@@ -84,5 +87,5 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 		exit(0);
 	}
 	philo->table->father = getpid();
-	pid_born(philo, p, table);
+	pid_born(philo, table);
 }

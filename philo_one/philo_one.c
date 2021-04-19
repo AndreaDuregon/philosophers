@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
+/*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:20:26 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 16:30:50 by dmalori          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:08:52 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+void	ft_alone(t_table table)
+{
+	printf("0 0 has taken a fork\n");
+	usleep(table.time_to_die * 1000);
+	printf("%llu 0 is dead\n", table.time_to_die);
+}
 
 int	main(int argc, char **argv)
 {
@@ -26,9 +33,7 @@ int	main(int argc, char **argv)
 	table = init_table(argv, argc);
 	philo = init_philo(table);
 	if (philo->table->num_philo == 1)
-	{
-		printf("UNO SOLO\n");
-	}
+		ft_alone(table);
 	else
 		start_life(philo, p, table);
 	free(table.fork);

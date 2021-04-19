@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_one.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgiovo <sgiovo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dmalori <dmalori@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 20:20:26 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:37:51 by sgiovo           ###   ########.fr       */
+/*   Updated: 2021/04/19 16:18:55 by dmalori          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	table = init_table(argv, argc);
 	philo = init_philo(table);
 	start_life(philo, p, table);
+	free(table.fork);
 	free(philo);
 	free(p);
 }

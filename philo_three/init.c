@@ -6,7 +6,7 @@
 /*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:11:23 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:25:54 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:42:48 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ int	parse_input(char **argv, int argc)
 	return (1);
 }
 
-t_table	init_table2(t_table table, char **argv, int argc)
+t_table	init_table2(char **argv, int argc)
 {
+	t_table			table;
+
 	table.round = 0;
 	table.cont = 0;
 	table.turn = 0;
@@ -46,11 +48,8 @@ t_table	init_table2(t_table table, char **argv, int argc)
 t_table	init_table(char **argv, int argc)
 {
 	t_table			table;
-	sem_t			status;
-	sem_t			print;
-	sem_t			dead;
 
-	table = init_table2(table, argv, argc);
+	table = init_table2(argv, argc);
 	table.start = get_time_stamp();
 	sem_unlink("/status_sem");
 	sem_unlink("/print_sem");

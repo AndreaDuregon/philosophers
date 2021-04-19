@@ -6,7 +6,7 @@
 /*   By: forsili <forsili@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:15:02 by aduregon          #+#    #+#             */
-/*   Updated: 2021/04/19 14:24:38 by forsili          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:43:29 by forsili          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	print_dead(t_philo *philo, unsigned long long t, int i)
 {
 	char	*timestamp;
 	char	*id;
-	char	text[1000];
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);
@@ -44,7 +43,6 @@ void	print_sleep(t_philo *philo, unsigned long long t, int i)
 {
 	char	*timestamp;
 	char	*id;
-	char	*text[1000];
 
 	timestamp = ft_itoa(t);
 	id = ft_itoa(i);

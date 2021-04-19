@@ -12,14 +12,6 @@
 
 #include "philo_three.h"
 
-void	philo_eat_odd(t_philo *philo)
-{
-	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	philo->remain_meal++;
-	philo->eat_time = get_time_stamp();
-	usleep(philo->table->time_to_eat);
-}
-
 void	philo_eat_even(t_philo *philo)
 {
 	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
@@ -28,22 +20,11 @@ void	philo_eat_even(t_philo *philo)
 	usleep(philo->table->time_to_eat);
 }
 
-void	philo_eat_last(t_philo *philo)
-{
-	sem_wait((philo->table->status));
-	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	print_fork(philo, get_time_stamp() - philo->table->start, philo->id);
-	philo->table->round = 0;
-	philo->remain_meal++;
-	print_eat(philo, get_time_stamp() - philo->table->start, philo->id);
-	sem_post((philo->table->status));
-	usleep(philo->table->time_to_eat);
-	philo->eat_time = get_time_stamp();
-}
-
 int	philo_even(t_philo *philo, pthread_t monitor)
 {
+	sem_wait(philo->table->status);
 	philo_eat_even(philo);
+	sem_post(philo->table->status);
 	ft_sleep(philo);
 	if (philo->remain_meal == philo->table->num_meal)
 	{
@@ -54,20 +35,5 @@ int	philo_even(t_philo *philo, pthread_t monitor)
 	}
 	if (philo->status == 2)
 		exit(2);
-	return (1);
-}
-
-int	philo_odd(t_philo *philo, pthread_t monitor)
-{
-	philo_eat_odd(philo);
-	ft_sleep(philo);
-	usleep(philo->table->time_to_eat);
-	if (philo->remain_meal == philo->table->num_meal)
-	{
-		philo->status = 1;
-		pthread_detach(monitor);
-		exit(0);
-		return (0);
-	}
 	return (1);
 }

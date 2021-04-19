@@ -56,25 +56,6 @@ void	*philosopher(void *input)
 	return (NULL);
 }
 
-void	*philosopher_odd(void *input)
-{
-	t_philo			*philo;
-	pthread_t		monitor;
-	int				i;
-
-	philo = (t_philo *)input;
-	philo->remain_meal = 0;
-	i = 0;
-	philo->eat_time = get_time_stamp();
-	pthread_create(&monitor, NULL, &is_dead, &(*input));
-	while (1)
-	{
-		if (!philo_odd(philo, monitor))
-			break ;
-	}
-	return (NULL);
-}
-
 void	*alone_philosopher(void *input)
 {
 	t_philo			*philo;
@@ -101,34 +82,10 @@ void	start_life(char **argv, t_philo *philo, pthread_t *p, t_table table)
 		free(p);
 		exit(0);
 	}
-	if (table.num_philo % 2 == 0)
+	while (i < table.num_philo)
 	{
-		while (k < 2)
-		{
-			while (i < table.num_philo)
-			{
-				pthread_create(&p[i], NULL, &philosopher, &philo[i]);
-				i += 2;
-			}
-			usleep(philo->table->time_to_eat);
-			k++;
-			i = 1;
-		}
-	}
-	else
-	{
-		while (k < 2)
-		{
-			while (i < (table.num_philo - 1))
-			{
-				pthread_create(&p[i], NULL, &philosopher_odd, &philo[i]);
-				i += 2;
-			}
-			usleep(philo->table->time_to_eat);
-			k++;
-			i = 1;
-		}
-		pthread_create(&p[table.num_philo - 1], NULL, &philosopher_odd, &philo[table.num_philo - 1]);
+		pthread_create(&p[i], NULL, &philosopher, &philo[i]);
+		i += 1;
 	}
 	k = 0;
 	while (k < i)
